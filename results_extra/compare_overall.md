@@ -1,7 +1,0 @@
-| algorithm | destinations | mean goodput Mbit/s | geo-mean goodput vs cubic | dest. with best goodput | mean queueing ms | dest. with lowest queueing |
-|---|---|---|---|---|---|---|
-| cubic | 1 | 34.43 | 1.00 | 0 | 16.5 | 0 |
-| reno | 1 | 27.54 | 0.80 | 0 | 12.7 | 1 |
-| bbr | 1 | 34.85 | 1.01 | 1 | 38.0 | 0 |
-
-Across destinations; each destination's value is the mean over its repetitions.
