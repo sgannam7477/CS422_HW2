@@ -1,0 +1,38 @@
+20:25:32 kernel 6.8.0-117-generic  default cc=cubic  using ['cubic', 'reno', 'bbr']
+20:25:32 [0/1] probing yyc-speedtest.xplore.ca:8072 (Woodstock CA Xplore) with cc=cubic
+20:26:33     OK  rep=0 cc=cubic: mean 31.5 Mbit/s, server received 236453888
+20:27:37     OK  rep=0 cc=reno: mean 27.9 Mbit/s, server received 209453056
+20:28:41     OK  rep=0 cc=bbr: mean 35.3 Mbit/s, server received 265158656
+20:29:45     OK  rep=1 cc=reno: mean 28.4 Mbit/s, server received 212992000
+20:30:48     OK  rep=1 cc=bbr: mean 33.8 Mbit/s, server received 253886464
+20:31:52     OK  rep=1 cc=cubic: mean 34.3 Mbit/s, server received 257687552
+20:32:56     OK  rep=2 cc=bbr: mean 35.4 Mbit/s, server received 265814016
+20:34:00     OK  rep=2 cc=cubic: mean 37.5 Mbit/s, server received 281935872
+20:35:04     OK  rep=2 cc=reno: mean 26.4 Mbit/s, server received 198180864
+20:35:07 measurement done: 1/1 destinations, 9 runs
+| destination | algorithm | runs | samples | min_mbps | median_mbps | mean_mbps | p95_mbps |
+|---|---|---|---|---|---|---|---|
+| yyc-speedtest.xplore.ca:8072 | cubic | 3 | 900 | 0.00 | 34.83 | 34.45 | 42.67 |
+| yyc-speedtest.xplore.ca:8072 | reno | 3 | 900 | 0.00 | 26.84 | 27.55 | 41.61 |
+| yyc-speedtest.xplore.ca:8072 | bbr | 3 | 900 | 0.00 | 33.97 | 34.93 | 112.51 |
+
+Throughput in Mbit/s from acknowledged-byte deltas per sampling interval, pooled over repetitions.
+
+representative destination (same for all algorithms): yyc-speedtest.xplore.ca:8072
+| algorithm | destinations | mean goodput Mbit/s | geo-mean goodput vs cubic | dest. with best goodput | mean queueing ms | dest. with lowest queueing |
+|---|---|---|---|---|---|---|
+| cubic | 1 | 34.43 | 1.00 | 0 | 16.5 | 0 |
+| reno | 1 | 27.54 | 0.80 | 0 | 12.7 | 1 |
+| bbr | 1 | 34.85 | 1.01 | 1 | 38.0 | 0 |
+
+Across destinations; each destination's value is the mean over its repetitions.
+
+| destination | algorithm | reps | goodput Mbit/s | mean srtt ms | min RTT ms | queueing ms | BtlBw Mbit/s | BDP KB | cwnd/BDP | util | retrans % |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| yyc-speedtest.xplore.ca:8072 | cubic | 3 | 34.43 ± 3.03 | 93.22 ± 0.71 | 76.7 | 16.53 ± 0.71 | 47.7 | 457 | 0.90 | 0.72 | 0.458 |
+| yyc-speedtest.xplore.ca:8072 | reno | 3 | 27.54 ± 1.03 | 89.35 ± 0.96 | 76.7 | 12.66 ± 0.96 | 47.7 | 457 | 0.70 | 0.58 | 0.539 |
+| yyc-speedtest.xplore.ca:8072 | bbr | 3 | 34.85 ± 0.88 | 114.65 ± 4.66 | 76.7 | 37.96 ± 4.66 | 47.7 | 457 | 2.25 | 0.73 | 11.085 |
+
+Repetitions per destination×algorithm: 3. Values are mean ± sample std across repetitions. goodput = acked bytes·8/duration (Mbit/s); srtt = mean smoothed RTT (ms); min RTT = smallest RTT seen on the path (ms); queueing = mean srtt − min RTT (ms); BtlBw = 95th percentile of the kernel delivery-rate estimate (best over all runs, Mbit/s; falls back to p95 goodput where unavailable); BDP = BtlBw·min RTT (KB); cwnd/BDP = mean cwnd ÷ BDP; util = goodput ÷ BtlBw; retrans = retransmitted bytes as % of bytes sent.
+
+wrote PDFs and tables to results

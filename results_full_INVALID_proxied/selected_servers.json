@@ -1,0 +1,183 @@
+{
+  "requested": 10,
+  "obtained": 10,
+  "shortfall": 0,
+  "selected": [
+    {
+      "host": "156.146.52.1",
+      "port": 5201,
+      "site": "Istanbul TR DATAPACKET"
+    },
+    {
+      "host": "speedtest.lax12.us.leaseweb.net",
+      "port": 5210,
+      "site": "Los Angeles US LeaseWeb"
+    },
+    {
+      "host": "la.speedtest.clouvider.net",
+      "port": 5204,
+      "site": "Los Angeles US Clouvider"
+    },
+    {
+      "host": "185.59.221.51",
+      "port": 5201,
+      "site": "London GB DATAPACKET"
+    },
+    {
+      "host": "speedtest2.lightningfibre.net.uk",
+      "port": 4000,
+      "site": "London GB Lightning Fibre"
+    },
+    {
+      "host": "116.169.118.91",
+      "port": 5209,
+      "site": "Chengdu CN China Telecom"
+    },
+    {
+      "host": "189.25.97.217",
+      "port": 30003,
+      "site": "Dubai AE FortiSASE"
+    },
+    {
+      "host": "speed.couch.ca",
+      "port": 15206,
+      "site": "Victoria CA couch.ca"
+    },
+    {
+      "host": "169.150.202.193",
+      "port": 5201,
+      "site": "Tel Aviv IL DATAPACKET"
+    },
+    {
+      "host": "138.199.14.66",
+      "port": 5201,
+      "site": "Marseille FR DATAPACKET"
+    }
+  ],
+  "attempts": [
+    {
+      "host": "156.146.52.1",
+      "port": 5201,
+      "site": "Istanbul TR DATAPACKET",
+      "outcome": "ok"
+    },
+    {
+      "host": "speedtest.lax12.us.leaseweb.net",
+      "port": 5210,
+      "site": "Los Angeles US LeaseWeb",
+      "outcome": "ok"
+    },
+    {
+      "host": "speedtest.lax12.us.leaseweb.net",
+      "port": 5210,
+      "site": "Los Angeles US LeaseWeb",
+      "cc": "bbr",
+      "rep": 0,
+      "outcome": "failed",
+      "kind": "server-terminated",
+      "error": "server-terminated: server terminated the test"
+    },
+    {
+      "host": "la.speedtest.clouvider.net",
+      "port": 5204,
+      "site": "Los Angeles US Clouvider",
+      "outcome": "ok"
+    },
+    {
+      "host": "185.59.221.51",
+      "port": 5201,
+      "site": "London GB DATAPACKET",
+      "outcome": "ok"
+    },
+    {
+      "host": "185.59.221.51",
+      "port": 5201,
+      "site": "London GB DATAPACKET",
+      "cc": "reno",
+      "rep": 0,
+      "outcome": "failed",
+      "kind": "busy",
+      "error": "busy: server busy / access denied"
+    },
+    {
+      "host": "185.59.221.51",
+      "port": 5201,
+      "site": "London GB DATAPACKET",
+      "cc": "reno",
+      "rep": 0,
+      "outcome": "failed",
+      "kind": "busy",
+      "error": "busy: server busy / access denied"
+    },
+    {
+      "host": "speedtest2.lightningfibre.net.uk",
+      "port": 4000,
+      "site": "London GB Lightning Fibre",
+      "outcome": "ok"
+    },
+    {
+      "host": "116.169.118.91",
+      "port": 5209,
+      "site": "Chengdu CN China Telecom",
+      "outcome": "ok"
+    },
+    {
+      "host": "69.48.238.200",
+      "port": 30009,
+      "site": "Dubai AE FortiSASE",
+      "outcome": "failed",
+      "kind": "premature-close",
+      "error": "premature-close: server closed control connection mid-test"
+    },
+    {
+      "host": "spd-desrv.hostkey.com",
+      "port": 5209,
+      "site": "Frankfurt DE HOSTKEY",
+      "outcome": "failed",
+      "kind": "premature-close",
+      "error": "premature-close: data connection: [Errno 104] Connection reset by peer"
+    },
+    {
+      "host": "189.25.97.217",
+      "port": 30003,
+      "site": "Dubai AE FortiSASE",
+      "outcome": "ok"
+    },
+    {
+      "host": "189.25.97.217",
+      "port": 30003,
+      "site": "Dubai AE FortiSASE",
+      "cc": "reno",
+      "rep": 0,
+      "outcome": "failed",
+      "kind": "premature-close",
+      "error": "premature-close: data connection: [Errno 32] Broken pipe"
+    },
+    {
+      "host": "speed.couch.ca",
+      "port": 15206,
+      "site": "Victoria CA couch.ca",
+      "outcome": "ok"
+    },
+    {
+      "host": "speedtestfl.telecom.mu",
+      "port": 5201,
+      "site": "Floreal MU Mauritius Telecom",
+      "outcome": "failed",
+      "kind": "premature-close",
+      "error": "premature-close: server closed control connection"
+    },
+    {
+      "host": "169.150.202.193",
+      "port": 5201,
+      "site": "Tel Aviv IL DATAPACKET",
+      "outcome": "ok"
+    },
+    {
+      "host": "138.199.14.66",
+      "port": 5201,
+      "site": "Marseille FR DATAPACKET",
+      "outcome": "ok"
+    }
+  ]
+}

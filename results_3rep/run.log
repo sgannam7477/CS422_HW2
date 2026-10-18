@@ -1,0 +1,222 @@
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  4.195MB
+Step 1/11 : FROM ubuntu:24.04
+ ---> 534baea6a22c
+Step 2/11 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 1f87eab1dcaa
+Step 3/11 : RUN apt-get update  && apt-get install -y --no-install-recommends python3 python3-venv ca-certificates  && rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> a63715317a1d
+Step 4/11 : WORKDIR /app
+ ---> Using cache
+ ---> 784c3460421a
+Step 5/11 : COPY requirements.txt .
+ ---> Using cache
+ ---> d41d211edead
+Step 6/11 : RUN python3 -m venv /opt/venv && /opt/venv/bin/pip install --no-cache-dir -r requirements.txt
+ ---> Using cache
+ ---> ef4167613d7e
+Step 7/11 : ENV PATH=/opt/venv/bin:$PATH MPLBACKEND=Agg PYTHONUNBUFFERED=1
+ ---> Using cache
+ ---> 4132f0c59d42
+Step 8/11 : COPY iperf_client.py run_experiments.py analyze.py servers.txt ./
+ ---> Using cache
+ ---> 7ac1d4dc643f
+Step 9/11 : VOLUME /app/results
+ ---> Using cache
+ ---> 1aa27a1ebf86
+Step 10/11 : ENTRYPOINT ["python3", "run_experiments.py"]
+ ---> Using cache
+ ---> 3d1412753bd4
+Step 11/11 : CMD ["--server-file", "servers.txt", "-n", "10", "-t", "60", "--interval", "0.2", "-r", "1"]
+ ---> Using cache
+ ---> 5cccc0eb7444
+Successfully built 5cccc0eb7444
+Successfully tagged cs422-iperf:latest
+19:01:35 kernel 6.8.0-117-generic  default cc=cubic  using ['cubic', 'reno', 'bbr']
+19:01:35 [0/10] probing 156.146.52.1:5201 (Istanbul TR DATAPACKET) with cc=cubic
+19:02:36     OK  rep=0 cc=cubic: mean 34.7 Mbit/s, server received 260571136
+19:03:40     OK  rep=0 cc=reno: mean 14.2 Mbit/s, server received 106299392
+19:04:45     OK  rep=0 cc=bbr: mean 34.8 Mbit/s, server received 261357568
+19:05:49     OK  rep=1 cc=reno: mean 19.1 Mbit/s, server received 143785984
+19:06:53     OK  rep=1 cc=bbr: mean 30.6 Mbit/s, server received 230424576
+19:07:57     OK  rep=1 cc=cubic: mean 18.6 Mbit/s, server received 139984896
+19:09:01     OK  rep=2 cc=bbr: mean 27.0 Mbit/s, server received 203423744
+19:10:06     OK  rep=2 cc=cubic: mean 32.5 Mbit/s, server received 244187136
+19:11:11     OK  rep=2 cc=reno: mean 14.3 Mbit/s, server received 107347968
+19:11:14 [1/10] probing speedtest.lax12.us.leaseweb.net:5210 (Los Angeles US LeaseWeb) with cc=cubic
+19:12:14     OK  rep=0 cc=cubic: mean 30.9 Mbit/s, server received 232259584
+19:13:18     OK  rep=0 cc=reno: mean 30.0 Mbit/s, server received 224919552
+19:14:21     OK  rep=0 cc=bbr: mean 36.9 Mbit/s, server received 276561920
+19:15:25     OK  rep=1 cc=reno: mean 32.7 Mbit/s, server received 245628928
+19:16:28     OK  rep=1 cc=bbr: mean 37.7 Mbit/s, server received 283246592
+19:17:32     OK  rep=1 cc=cubic: mean 33.7 Mbit/s, server received 252837888
+19:18:35     OK  rep=2 cc=bbr: mean 37.5 Mbit/s, server received 281149440
+19:19:39     OK  rep=2 cc=cubic: mean 36.8 Mbit/s, server received 275906560
+19:20:42     OK  rep=2 cc=reno: mean 32.2 Mbit/s, server received 241696768
+19:20:45 [2/10] probing la.speedtest.clouvider.net:5204 (Los Angeles US Clouvider) with cc=cubic
+19:21:46     OK  rep=0 cc=cubic: mean 40.2 Mbit/s, server received 301954226
+19:22:50     OK  rep=0 cc=reno: mean 23.1 Mbit/s, server received 173270434
+19:23:54     OK  rep=0 cc=bbr: mean 35.4 Mbit/s, server received 265809874
+19:24:58     OK  rep=1 cc=reno: mean 31.5 Mbit/s, server received 236711800
+19:26:01     OK  rep=1 cc=bbr: mean 36.2 Mbit/s, server received 271532952
+19:27:05     OK  rep=1 cc=cubic: mean 34.3 Mbit/s, server received 257761266
+19:28:09     OK  rep=2 cc=bbr: mean 35.2 Mbit/s, server received 264218530
+19:29:12     OK  rep=2 cc=cubic: mean 39.0 Mbit/s, server received 293038890
+19:30:16     OK  rep=2 cc=reno: mean 31.4 Mbit/s, server received 235352128
+19:30:19 [3/10] probing 185.59.221.51:5201 (London GB DATAPACKET) with cc=cubic
+19:31:20     OK  rep=0 cc=cubic: mean 31.4 Mbit/s, server received 236060672
+19:31:23     FAILED rep=0 cc=reno: busy: server busy / access denied
+19:31:31     FAILED rep=0 cc=reno: busy: server busy / access denied
+19:31:40     FAILED rep=0 cc=reno: busy: server busy / access denied
+19:31:43     FAILED rep=0 cc=bbr: busy: server busy / access denied
+19:32:52     OK  rep=0 cc=bbr: mean 32.6 Mbit/s, server received 245104640
+19:33:56     OK  rep=1 cc=reno: mean 23.1 Mbit/s, server received 173408256
+19:34:59     OK  rep=1 cc=bbr: mean 31.8 Mbit/s, server received 238551040
+19:36:03     OK  rep=1 cc=cubic: mean 30.1 Mbit/s, server received 226492416
+19:36:07     FAILED rep=2 cc=bbr: busy: server busy / access denied
+19:36:15     FAILED rep=2 cc=bbr: busy: server busy / access denied
+19:36:23     FAILED rep=2 cc=bbr: busy: server busy / access denied
+19:36:26     FAILED rep=2 cc=cubic: busy: server busy / access denied
+19:37:35     OK  rep=2 cc=cubic: mean 34.5 Mbit/s, server received 258998272
+19:38:39     OK  rep=2 cc=reno: mean 20.5 Mbit/s, server received 153878528
+19:38:42 [4/10] probing speedtest2.lightningfibre.net.uk:4000 (London GB Lightning Fibre) with cc=cubic
+19:39:43     OK  rep=0 cc=cubic: mean 30.9 Mbit/s, server received 232128512
+19:40:47     OK  rep=0 cc=reno: mean 24.2 Mbit/s, server received 181403648
+19:41:51     OK  rep=0 cc=bbr: mean 34.9 Mbit/s, server received 261357568
+19:42:55     OK  rep=1 cc=reno: mean 25.8 Mbit/s, server received 194248704
+19:43:59     OK  rep=1 cc=bbr: mean 35.1 Mbit/s, server received 263323648
+19:45:02     OK  rep=1 cc=cubic: mean 34.8 Mbit/s, server received 260964352
+19:46:06     OK  rep=2 cc=bbr: mean 37.1 Mbit/s, server received 278003712
+19:47:10     OK  rep=2 cc=cubic: mean 36.3 Mbit/s, server received 272498688
+19:48:14     OK  rep=2 cc=reno: mean 22.3 Mbit/s, server received 167903232
+19:48:17 [5/10] probing 116.169.118.91:5209 (Chengdu CN China Telecom) with cc=cubic
+19:49:19     OK  rep=0 cc=cubic: mean 17.8 Mbit/s, server received 134411258
+19:50:25     OK  rep=0 cc=reno: mean 10.9 Mbit/s, server received 82132104
+19:51:31     OK  rep=0 cc=bbr: mean 32.3 Mbit/s, server received 243406104
+19:52:36     OK  rep=1 cc=reno: mean 14.3 Mbit/s, server received 107472240
+19:53:42     OK  rep=1 cc=bbr: mean 31.0 Mbit/s, server received 233724318
+19:54:47     OK  rep=1 cc=cubic: mean 30.4 Mbit/s, server received 229092130
+19:55:53     OK  rep=2 cc=bbr: mean 31.4 Mbit/s, server received 237268296
+19:56:59     OK  rep=2 cc=cubic: mean 21.5 Mbit/s, server received 162524616
+19:58:04     OK  rep=2 cc=reno: mean 21.0 Mbit/s, server received 157854728
+19:58:07 [6/10] probing 69.48.238.200:30009 (Dubai AE FortiSASE) with cc=cubic
+19:59:09     OK  rep=0 cc=cubic: mean 33.6 Mbit/s, server received 252444672
+20:00:14     OK  rep=0 cc=reno: mean 8.6 Mbit/s, server received 64618496
+20:01:19     OK  rep=0 cc=bbr: mean 33.2 Mbit/s, server received 250478592
+20:02:23     OK  rep=1 cc=reno: mean 11.0 Mbit/s, server received 82313216
+20:03:28     OK  rep=1 cc=bbr: mean 31.6 Mbit/s, server received 238813184
+20:04:33     OK  rep=1 cc=cubic: mean 21.6 Mbit/s, server received 162922496
+20:05:37     OK  rep=2 cc=bbr: mean 31.1 Mbit/s, server received 234356736
+20:06:42     OK  rep=2 cc=cubic: mean 28.7 Mbit/s, server received 216268800
+20:07:47     OK  rep=2 cc=reno: mean 11.7 Mbit/s, server received 87687168
+20:07:50 [7/10] probing spd-desrv.hostkey.com:5209 (Frankfurt DE HOSTKEY) with cc=cubic
+20:08:51     OK  rep=0 cc=cubic: mean 26.6 Mbit/s, server received 200909890
+20:09:55     OK  rep=0 cc=reno: mean 20.6 Mbit/s, server received 155093840
+20:10:59     OK  rep=0 cc=bbr: mean 33.9 Mbit/s, server received 254356786
+20:12:04     OK  rep=1 cc=reno: mean 17.6 Mbit/s, server received 132183472
+20:13:08     OK  rep=1 cc=bbr: mean 33.1 Mbit/s, server received 248616964
+20:14:12     OK  rep=1 cc=cubic: mean 33.2 Mbit/s, server received 249133340
+20:15:17     OK  rep=2 cc=bbr: mean 34.2 Mbit/s, server received 256532186
+20:16:21     OK  rep=2 cc=cubic: mean 27.0 Mbit/s, server received 203247500
+20:17:25     OK  rep=2 cc=reno: mean 16.0 Mbit/s, server received 120308872
+20:17:28 [8/10] probing 189.25.97.217:30003 (Dubai AE FortiSASE) with cc=cubic
+20:18:30     OK  rep=0 cc=cubic: mean 19.9 Mbit/s, server received 150208512
+20:19:35     OK  rep=0 cc=reno: mean 18.3 Mbit/s, server received 137756672
+20:20:48     OK  rep=0 cc=bbr: mean 28.6 Mbit/s, server received 214564864
+20:20:58     FAILED rep=1 cc=reno: busy: server busy / access denied
+20:21:07     FAILED rep=1 cc=reno: busy: server busy / access denied
+20:21:15     FAILED rep=1 cc=reno: busy: server busy / access denied
+20:21:21     FAILED rep=1 cc=bbr: busy: server busy / access denied
+20:21:30     FAILED rep=1 cc=bbr: busy: server busy / access denied
+20:21:39     FAILED rep=1 cc=bbr: busy: server busy / access denied
+20:21:42     FAILED rep=1 cc=cubic: busy: server busy / access denied
+20:21:50     FAILED rep=1 cc=cubic: busy: server busy / access denied
+20:21:59     FAILED rep=1 cc=cubic: busy: server busy / access denied
+20:22:03     FAILED rep=2 cc=bbr: busy: server busy / access denied
+20:22:11     FAILED rep=2 cc=bbr: busy: server busy / access denied
+20:22:20     FAILED rep=2 cc=bbr: busy: server busy / access denied
+20:22:23     FAILED rep=2 cc=cubic: busy: server busy / access denied
+20:22:32     FAILED rep=2 cc=cubic: busy: server busy / access denied
+20:23:41     OK  rep=2 cc=cubic: mean 29.6 Mbit/s, server received 222953472
+20:24:46     OK  rep=2 cc=reno: mean 12.6 Mbit/s, server received 95158272
+20:24:49 measurement done: 9/10 destinations, 75 runs  (SHORTFALL of 1 after 31 attempts)
+| destination | algorithm | runs | samples | min_mbps | median_mbps | mean_mbps | p95_mbps |
+|---|---|---|---|---|---|---|---|
+| 116.169.118.91:5209 | cubic | 3 | 900 | 0.00 | 23.77 | 23.24 | 41.92 |
+| 116.169.118.91:5209 | reno | 3 | 900 | 0.00 | 14.40 | 15.40 | 31.39 |
+| 116.169.118.91:5209 | bbr | 3 | 900 | 0.00 | 40.17 | 31.61 | 84.06 |
+| 156.146.52.1:5201 | cubic | 3 | 900 | 0.00 | 32.06 | 28.60 | 41.40 |
+| 156.146.52.1:5201 | reno | 3 | 900 | 0.00 | 14.62 | 15.86 | 26.25 |
+| 156.146.52.1:5201 | bbr | 3 | 900 | 0.00 | 26.00 | 30.92 | 97.45 |
+| 185.59.221.51:5201 | cubic | 3 | 900 | 0.00 | 32.20 | 32.02 | 41.92 |
+| 185.59.221.51:5201 | reno | 2 | 600 | 0.00 | 20.55 | 21.79 | 38.26 |
+| 185.59.221.51:5201 | bbr | 2 | 600 | 0.00 | 15.82 | 32.27 | 116.23 |
+| 189.25.97.217:30003 | cubic | 2 | 600 | 0.00 | 25.84 | 24.81 | 40.61 |
+| 189.25.97.217:30003 | reno | 2 | 600 | 0.00 | 14.91 | 15.47 | 24.83 |
+| 189.25.97.217:30003 | bbr | 1 | 300 | 0.00 | 20.55 | 28.79 | 89.15 |
+| 69.48.238.200:30009 | cubic | 3 | 900 | 0.00 | 29.23 | 28.00 | 40.70 |
+| 69.48.238.200:30009 | reno | 3 | 900 | 0.00 | 9.41 | 10.41 | 18.67 |
+| 69.48.238.200:30009 | bbr | 3 | 900 | 0.00 | 33.92 | 32.08 | 88.26 |
+| la.speedtest.clouvider.net:5204 | cubic | 3 | 900 | 1.69 | 40.87 | 37.87 | 42.21 |
+| la.speedtest.clouvider.net:5204 | reno | 3 | 900 | 0.00 | 29.37 | 28.66 | 41.43 |
+| la.speedtest.clouvider.net:5204 | bbr | 3 | 900 | 0.00 | 36.04 | 35.65 | 93.92 |
+| spd-desrv.hostkey.com:5209 | cubic | 3 | 900 | 0.00 | 29.79 | 28.95 | 41.74 |
+| spd-desrv.hostkey.com:5209 | reno | 3 | 900 | 0.00 | 17.09 | 18.09 | 28.53 |
+| spd-desrv.hostkey.com:5209 | bbr | 3 | 900 | 0.00 | 25.24 | 33.87 | 110.82 |
+| speedtest.lax12.us.leaseweb.net:5210 | cubic | 3 | 900 | 1.71 | 36.88 | 33.79 | 41.73 |
+| speedtest.lax12.us.leaseweb.net:5210 | reno | 3 | 900 | 0.00 | 32.25 | 31.64 | 41.55 |
+| speedtest.lax12.us.leaseweb.net:5210 | bbr | 3 | 900 | 0.00 | 38.05 | 37.39 | 81.41 |
+| speedtest2.lightningfibre.net.uk:4000 | cubic | 3 | 900 | 0.00 | 35.91 | 33.98 | 42.64 |
+| speedtest2.lightningfibre.net.uk:4000 | reno | 3 | 900 | 0.00 | 22.91 | 24.12 | 41.28 |
+| speedtest2.lightningfibre.net.uk:4000 | bbr | 3 | 900 | 0.00 | 40.22 | 35.77 | 68.41 |
+
+Throughput in Mbit/s from acknowledged-byte deltas per sampling interval, pooled over repetitions.
+
+representative destination (same for all algorithms): la.speedtest.clouvider.net:5204
+| algorithm | destinations | mean goodput Mbit/s | geo-mean goodput vs cubic | dest. with best goodput | mean queueing ms | dest. with lowest queueing |
+|---|---|---|---|---|---|---|
+| cubic | 9 | 30.13 | 1.00 | 1 | 20.7 | 3 |
+| reno | 9 | 20.15 | 0.64 | 0 | 17.6 | 6 |
+| bbr | 9 | 33.06 | 1.11 | 8 | 43.0 | 0 |
+
+Across destinations; each destination's value is the mean over its repetitions.
+
+| destination | algorithm | reps | goodput Mbit/s | mean srtt ms | min RTT ms | queueing ms | BtlBw Mbit/s | BDP KB | cwnd/BDP | util | retrans % |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 116.169.118.91:5209 | cubic | 3 | 23.24 ± 6.48 | 270.85 ± 2.91 | 249.6 | 21.21 ± 2.91 | 42.6 | 1329 | 0.59 | 0.55 | 0.090 |
+| 116.169.118.91:5209 | reno | 3 | 15.39 ± 5.12 | 268.93 ± 2.90 | 249.6 | 19.29 ± 2.90 | 42.6 | 1329 | 0.40 | 0.36 | 0.345 |
+| 116.169.118.91:5209 | bbr | 3 | 31.55 ± 0.66 | 301.95 ± 15.59 | 249.6 | 52.31 ± 15.59 | 42.6 | 1329 | 1.82 | 0.74 | 2.654 |
+| 156.146.52.1:5201 | cubic | 3 | 28.59 ± 8.72 | 163.26 ± 5.92 | 145.9 | 17.37 ± 5.92 | 51.1 | 931 | 0.65 | 0.56 | 0.504 |
+| 156.146.52.1:5201 | reno | 3 | 15.86 ± 2.84 | 166.44 ± 5.10 | 145.9 | 20.55 ± 5.10 | 51.1 | 931 | 0.38 | 0.31 | 0.844 |
+| 156.146.52.1:5201 | bbr | 3 | 30.82 ± 3.92 | 202.51 ± 24.65 | 145.9 | 56.62 ± 24.65 | 51.1 | 931 | 1.93 | 0.60 | 8.147 |
+| 185.59.221.51:5201 | cubic | 3 | 32.01 ± 2.24 | 120.71 ± 2.53 | 100.6 | 20.12 ± 2.53 | 47.1 | 592 | 0.85 | 0.68 | 0.382 |
+| 185.59.221.51:5201 | reno | 2 | 21.78 ± 1.87 | 119.29 ± 12.38 | 100.6 | 18.70 ± 12.38 | 47.1 | 592 | 0.58 | 0.46 | 0.506 |
+| 185.59.221.51:5201 | bbr | 2 | 32.20 ± 0.54 | 151.54 ± 16.71 | 100.6 | 50.95 ± 16.71 | 47.1 | 592 | 2.30 | 0.68 | 9.629 |
+| 189.25.97.217:30003 | cubic | 2 | 24.78 ± 6.86 | 234.99 ± 4.40 | 210.7 | 24.30 ± 4.40 | 42.6 | 1122 | 0.67 | 0.58 | 0.205 |
+| 189.25.97.217:30003 | reno | 2 | 15.47 ± 4.00 | 223.82 ± 1.15 | 210.7 | 13.13 ± 1.15 | 42.6 | 1122 | 0.40 | 0.36 | 0.338 |
+| 189.25.97.217:30003 | bbr | 1 | 28.61 ± 0.00 | 245.27 ± 0.00 | 210.7 | 34.58 ± 0.00 | 42.6 | 1122 | 1.62 | 0.67 | 0.702 |
+| 69.48.238.200:30009 | cubic | 3 | 27.98 ± 6.00 | 233.15 ± 12.19 | 207.6 | 25.57 ± 12.19 | 43.9 | 1139 | 0.73 | 0.64 | 0.309 |
+| 69.48.238.200:30009 | reno | 3 | 10.40 ± 1.62 | 234.82 ± 12.27 | 207.6 | 27.24 ± 12.27 | 43.9 | 1139 | 0.28 | 0.24 | 0.632 |
+| 69.48.238.200:30009 | bbr | 3 | 31.97 ± 1.08 | 261.13 ± 6.11 | 207.6 | 53.55 ± 6.11 | 43.9 | 1139 | 1.85 | 0.73 | 3.163 |
+| la.speedtest.clouvider.net:5204 | cubic | 3 | 37.87 ± 3.11 | 83.71 ± 10.01 | 61.7 | 21.97 ± 10.01 | 44.4 | 342 | 1.19 | 0.85 | 0.070 |
+| la.speedtest.clouvider.net:5204 | reno | 3 | 28.65 ± 4.83 | 74.29 ± 0.02 | 61.7 | 12.55 ± 0.02 | 44.4 | 342 | 0.81 | 0.65 | 0.403 |
+| la.speedtest.clouvider.net:5204 | bbr | 3 | 35.58 ± 0.50 | 93.99 ± 2.26 | 61.7 | 32.25 ± 2.26 | 44.4 | 342 | 2.32 | 0.80 | 7.765 |
+| spd-desrv.hostkey.com:5209 | cubic | 3 | 28.93 ± 3.66 | 130.88 ± 1.34 | 113.0 | 17.88 ± 1.34 | 44.9 | 634 | 0.76 | 0.64 | 0.362 |
+| spd-desrv.hostkey.com:5209 | reno | 3 | 18.08 ± 2.34 | 131.30 ± 4.80 | 113.0 | 18.30 ± 4.80 | 44.9 | 634 | 0.50 | 0.40 | 1.004 |
+| spd-desrv.hostkey.com:5209 | bbr | 3 | 33.76 ± 0.54 | 148.33 ± 4.94 | 113.0 | 35.33 ± 4.94 | 44.9 | 634 | 2.17 | 0.75 | 7.719 |
+| speedtest.lax12.us.leaseweb.net:5210 | cubic | 3 | 33.79 ± 2.91 | 77.05 ± 2.11 | 60.4 | 16.69 ± 2.11 | 44.3 | 334 | 0.99 | 0.76 | 0.057 |
+| speedtest.lax12.us.leaseweb.net:5210 | reno | 3 | 31.63 ± 1.46 | 75.33 ± 1.34 | 60.4 | 14.97 ± 1.34 | 44.3 | 334 | 0.93 | 0.71 | 0.759 |
+| speedtest.lax12.us.leaseweb.net:5210 | bbr | 3 | 37.35 ± 0.46 | 93.07 ± 6.80 | 60.4 | 32.71 ± 6.80 | 44.3 | 334 | 2.31 | 0.84 | 7.585 |
+| speedtest2.lightningfibre.net.uk:4000 | cubic | 3 | 33.98 ± 2.78 | 123.40 ± 9.07 | 102.0 | 21.39 ± 9.07 | 44.5 | 567 | 0.94 | 0.76 | 0.030 |
+| speedtest2.lightningfibre.net.uk:4000 | reno | 3 | 24.11 ± 1.75 | 116.04 ± 1.04 | 102.0 | 14.03 ± 1.04 | 44.5 | 567 | 0.64 | 0.54 | 0.034 |
+| speedtest2.lightningfibre.net.uk:4000 | bbr | 3 | 35.68 ± 1.21 | 140.63 ± 5.24 | 102.0 | 38.61 ± 5.24 | 44.5 | 567 | 2.06 | 0.80 | 0.698 |
+
+Repetitions per destination×algorithm: [1, 2, 3]. Values are mean ± sample std across repetitions. goodput = acked bytes·8/duration (Mbit/s); srtt = mean smoothed RTT (ms); min RTT = smallest RTT seen on the path (ms); queueing = mean srtt − min RTT (ms); BtlBw = 95th percentile of the kernel delivery-rate estimate (best over all runs, Mbit/s; falls back to p95 goodput where unavailable); BDP = BtlBw·min RTT (KB); cwnd/BDP = mean cwnd ÷ BDP; util = goodput ÷ BtlBw; retrans = retransmitted bytes as % of bytes sent.
+
+wrote PDFs and tables to results
+results in /Users/shrenick/HW422/CS422_HW2/results_3rep

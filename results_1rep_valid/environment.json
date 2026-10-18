@@ -1,0 +1,47 @@
+{
+  "kernel": "6.8.0-117-generic",
+  "tcp_default_cc": "cubic",
+  "tcp_available_cc": "reno cubic bbr",
+  "tcp_allowed_cc": "reno cubic bbr",
+  "algorithms_used": [
+    "cubic",
+    "reno",
+    "bbr"
+  ],
+  "algorithms_unavailable": {},
+  "args": {
+    "server_file": "servers.txt",
+    "num_destinations": 10,
+    "duration": 60,
+    "interval": 0.2,
+    "repetitions": 1,
+    "algorithms": "cubic,reno,bbr",
+    "max_attempts": null,
+    "seed": 1,
+    "out": "results",
+    "analyze_only": false,
+    "representative": null
+  },
+  "units": {
+    "t_s": "s",
+    "dt_s": "s",
+    "acked_bytes": "bytes, cumulative",
+    "goodput_bps": "bit/s",
+    "cwnd_segs": "MSS",
+    "cwnd_bytes": "bytes",
+    "mss": "bytes",
+    "srtt_ms": "ms",
+    "rttvar_ms": "ms",
+    "min_rtt_ms": "ms",
+    "ssthresh_segs": "MSS",
+    "retrans_total": "packets, cumulative",
+    "retrans_interval": "packets in this sampling interval",
+    "lost": "packets, kernel's current lost estimate",
+    "retrans_bytes": "bytes, cumulative",
+    "pacing_bps": "bit/s",
+    "delivery_bps": "bit/s",
+    "bytes_sent": "bytes, cumulative"
+  },
+  "decoding": "Decode the kernel's struct tcp_info for the *data* socket (getsockopt TCP_INFO).\n    Linux byte offsets, little-endian:\n      u32: snd_mss@16 lost@32 rtt(us)@68 rttvar(us)@72 snd_ssthresh@76 snd_cwnd@80\n           total_retrans@100 min_rtt(us)@148\n      u64: pacing_rate(B/s)@104 bytes_acked@120 delivery_rate(B/s)@160 bytes_sent@200 bytes_retrans@208\n    Fields missing from an older kernel stay None.",
+  "interval_metrics": "goodput_bps = 8*(acked_t - acked_{t-1})/(t - t_prev) with the measured elapsed time; retrans_interval = retrans_total_t - retrans_total_{t-1} (loss proxy)"
+}
