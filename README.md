@@ -12,17 +12,6 @@ One command runs everything: `run_experiments.py` picks servers, runs iperf3 TCP
 | `Dockerfile`, `run_docker.sh` | `ubuntu:24.04` image / one-command build + run |
 | `requirements.txt` | numpy, matplotlib (the client itself uses only the standard library) |
 
-## Requirements
-* **Linux (Ubuntu 22.04+) or WSL2.** A container uses the *host* kernel, so TCP_INFO fields and the available
-  congestion-control algorithms come from it. The host needs `cubic`, `reno` and `bbr`:
-  ```
-  cat /proc/sys/net/ipv4/tcp_available_congestion_control    # expect: reno cubic bbr
-  sudo modprobe tcp_bbr                                       # if bbr is missing
-  ```
-  Non-root processes may only use `tcp_allowed_congestion_control`; run the container with `--cap-add NET_ADMIN`
-  or add the algorithms to that list. Unavailable algorithms are skipped with a warning (see `environment.json`).
-* Outbound TCP access to the public iperf3 servers.
-* The host kernel version, default/available/allowed algorithms and all arguments are saved in `results/environment.json`.
 
 ## Run
 ```
